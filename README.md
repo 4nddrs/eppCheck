@@ -1,4 +1,4 @@
-![Header Image](Visuals/ppe-public-view.png)  
+![Header Image](Visuals/epp.png)  
 
 # 🦺 Construction Safety Detection - Mail Alert (YOLOv8)
 
