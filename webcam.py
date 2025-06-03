@@ -166,7 +166,7 @@ def main():
             draw_text_with_background(frame, "ALERTA: Persona sin casco", (220, 20), font_scale=0.7, color=(255, 255, 255), bg_color=(0, 0, 255), alpha=0.9)
 
         # Mostrar cronómetro de ausencia de casco
-        draw_text_with_background(frame, f"⏱️ Sin casco: {no_helmet_duration:.1f}s", (frame.shape[1] - 210, 60), font_scale=0.5, color=(255, 255, 255), bg_color=(30, 30, 30), alpha=0.6)
+        draw_text_with_background(frame, f"Sin casco: {no_helmet_duration:.1f}s", (frame.shape[1] - 210, 60), font_scale=0.5, color=(255, 255, 255), bg_color=(30, 30, 30), alpha=0.6)
 
         # Parpadeo de notificación de correo
         if email_sent_flag and (time.time() - email_sent_time) < 3:

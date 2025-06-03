@@ -1,6 +1,9 @@
-![Header Image](Visuals/epp.png)  
+# 🦺 Sistema de detección para EPP
 
-# 🦺 Construction Safety Detection - Mail Alert (YOLOv8)
+<p align="center">
+  <img src="Visuals/epp.png" alt="Header Image" width="400"/>
+</p>
+
 
 Este proyecto mejora la seguridad en obras de construcción mediante la detección en tiempo real del uso de equipos de protección personal (EPP) como cascos, chalecos y mascarillas, así como la presencia de personas, usando YOLOv8, un algoritmo avanzado de detección de objetos.
 
