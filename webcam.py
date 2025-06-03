@@ -94,6 +94,20 @@ def main():
 
     cv2.namedWindow("YOLOv8 Annotated Feed", cv2.WINDOW_NORMAL)
 
+    label_translation = {
+    "Hardhat": "Casco",
+    "Mask": "Mascarilla",
+    "NO-Hardhat": "Sin casco",
+    "NO-Mask": "Sin mascarilla",
+    "NO-Safety Vest": "Sin chaleco",
+    "Person": "Persona",
+    "Safety Cone": "Cono de seguridad",
+    "Safety Vest": "Chaleco",
+    "machinery": "Maquinaria",
+    "vehicle": "Vehículo"
+}
+
+    
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -111,7 +125,11 @@ def main():
                     x1, y1, x2, y2 = map(int, box.xyxy[0])
                     confidence = box.conf[0]
                     cls = int(box.cls[0])
-                    label = f"{model.names[cls]} ({confidence:.2f})"
+
+                    original_label = model.names[cls]
+                    translated_label = label_translation.get(original_label, original_label)
+                    label = f"{translated_label} ({confidence:.2f})"
+
                     color = colors[cls % len(colors)]
                     cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
                     draw_text_with_background(frame, label, (x1, y1 - 10), font_scale=0.4, color=(255, 255, 255), bg_color=color, alpha=0.8)
