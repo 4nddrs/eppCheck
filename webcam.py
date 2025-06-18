@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from playsound import playsound
 from ultralytics import YOLO
 import threading
 
@@ -15,6 +16,16 @@ load_dotenv()
 sender_email = os.getenv("SENDER_EMAIL")
 receiver_email = os.getenv("RECEIVER_EMAIL")
 email_password = os.getenv("EMAIL_PASSWORD")
+
+def play_alert_sound():
+    try:
+        playsound("alert.mp3")
+    except Exception as e:
+        print(f"Error al reproducir sonido: {e}")
+
+def play_alert_in_background():
+    sound_thread = threading.Thread(target=play_alert_sound)
+    sound_thread.start()
 
 def draw_text_with_background(frame, text, position, font_scale=0.4, color=(255, 255, 255), thickness=1, bg_color=(0, 0, 0), alpha=0.7, padding=5):
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -154,6 +165,7 @@ def main():
             image_path = "no_hardhat_frame.jpg"
             cv2.imwrite(image_path, frame)
             send_email_in_background(image_path)
+            play_alert_in_background()
             email_sent_flag = True
             email_sent_time = time.time()
             last_email_time = time.time()
